@@ -1,8 +1,13 @@
-import { Search, Bell, Settings } from "lucide-react";
+import { Search, Bell, User, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const Header = () => {
+  const { isAuthenticated, user, logout } = useAuth();
+  const navigate = useNavigate();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-6">
@@ -28,13 +33,25 @@ const Header = () => {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center space-x-2">
-          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-            <Bell className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-            <Settings className="h-5 w-5" />
-          </Button>
+        <div className="flex items-center space-x-4">
+          {isAuthenticated ? (
+            <>
+              <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground">
+                <Bell className="h-5 w-5" />
+                <span className="absolute top-1 right-1 h-2 w-2 bg-primary rounded-full"></span>
+              </Button>
+              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" title={user?.email}>
+                <User className="h-5 w-5" />
+              </Button>
+              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={logout}>
+                <LogOut className="h-5 w-5" />
+              </Button>
+            </>
+          ) : (
+            <Button onClick={() => navigate('/auth')}>
+              Sign In
+            </Button>
+          )}
         </div>
       </div>
     </header>

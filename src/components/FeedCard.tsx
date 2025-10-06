@@ -1,8 +1,10 @@
 import { Clock, ExternalLink, Bookmark, Share2 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface FeedCardProps {
+  id?: string;
   title: string;
   description: string;
   source: string;
@@ -13,6 +15,7 @@ interface FeedCardProps {
 }
 
 const FeedCard = ({ 
+  id = '1',
   title, 
   description, 
   source, 
@@ -51,9 +54,11 @@ const FeedCard = ({
             </div>
           </div>
 
-          <h3 className="text-lg font-semibold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-            {title}
-          </h3>
+          <Link to={`/news/${id}`}>
+            <h3 className="text-lg font-semibold mb-2 line-clamp-2 group-hover:text-primary transition-colors cursor-pointer">
+              {title}
+            </h3>
+          </Link>
           
           <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-4">
             {description}
@@ -73,10 +78,12 @@ const FeedCard = ({
               </Button>
             </div>
             
-            <Button variant="ghost" size="sm" className="h-8 text-muted-foreground hover:text-primary">
-              <ExternalLink className="h-4 w-4" />
-              <span className="ml-1 text-xs">Read</span>
-            </Button>
+            <Link to={`/news/${id}`}>
+              <Button variant="ghost" size="sm" className="h-8 text-muted-foreground hover:text-primary">
+                <ExternalLink className="h-4 w-4" />
+                <span className="ml-1 text-xs">Read</span>
+              </Button>
+            </Link>
           </div>
         </div>
       </CardContent>

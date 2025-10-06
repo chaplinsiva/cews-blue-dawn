@@ -6,6 +6,7 @@ import startupImage from "@/assets/startup-image.jpg";
 const FeedGrid = () => {
   const feedData = [
     {
+      id: "1",
       title: "The Future of AI in Web Development: What Developers Need to Know",
       description: "Artificial intelligence is revolutionizing web development with automated code generation, intelligent testing, and enhanced user experiences. Learn how to prepare for this transformation.",
       source: "TechCrunch",
@@ -15,6 +16,7 @@ const FeedGrid = () => {
       isBookmarked: true,
     },
     {
+      id: "2",
       title: "Minimalist Design Principles That Actually Work in 2024",
       description: "Explore the latest trends in minimalist design and how to implement them effectively in modern web applications without sacrificing functionality.",
       source: "Design Weekly",
@@ -23,6 +25,7 @@ const FeedGrid = () => {
       category: "Design",
     },
     {
+      id: "3",
       title: "Startup Funding Reaches Record High Despite Economic Uncertainty",
       description: "Despite global economic challenges, venture capital funding for startups has reached unprecedented levels this quarter, with AI and fintech leading the charge.",
       source: "Startup News",
@@ -31,6 +34,7 @@ const FeedGrid = () => {
       category: "Startups",
     },
     {
+      id: "4",
       title: "React 19: New Features and Breaking Changes You Should Know",
       description: "A comprehensive guide to React 19's new features, including improved server components, enhanced concurrent rendering, and important breaking changes.",
       source: "React Blog",
@@ -40,6 +44,7 @@ const FeedGrid = () => {
       isBookmarked: true,
     },
     {
+      id: "5",
       title: "Machine Learning Models Now 90% More Efficient Than Last Year",
       description: "New optimization techniques and hardware improvements have dramatically reduced the computational requirements for training and running ML models.",
       source: "AI Research",
@@ -48,6 +53,7 @@ const FeedGrid = () => {
       category: "AI & ML",
     },
     {
+      id: "6",
       title: "The Rise of WebAssembly: Performance Benefits and Use Cases",
       description: "WebAssembly is gaining traction for high-performance web applications. Discover its benefits, limitations, and practical implementation strategies.",
       source: "Mozilla Hacks",
@@ -65,9 +71,10 @@ const FeedGrid = () => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {feedData.map((item, index) => (
+        {feedData.map((item) => (
           <FeedCard
-            key={index}
+            key={item.id}
+            id={item.id}
             title={item.title}
             description={item.description}
             source={item.source}
